@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Product Detail Page</title>
+
+<link href="style.css" rel="stylesheet"/></head>
+<body>
+<h1>Product Details</h1>
+<div class="container">
+<div class="card">
+<img alt="Art Set" src="/api/placeholder/400/320"/>
+<p>iBayam Deluxe Art Set, 195-Pack Artist Gift Box, Arts and crafts Drawing Painting Kit Art Supplies for Adults Kids, Canvases, Crayons, Pencils</p>
+<b>$39.99</b>
+<p>
+        Ships from ABC<br/>
+        Sold by XYZ<br/>
+        Returns: Returnable until May 25, 2025<br/>
+<a href="#">Payment Secure transaction</a>
+</p>
+<button class="btn" id="buy-now-btn">BUY NOW</button>
+<button class="btn" id="add-cart-btn">ADD TO CART</button>
+</div>
+<div class="card">
+<h2>Detail Description</h2>
+<p><b>Brand:</b> iBayam<br/>
+<b>Color:</b> Blue<br/>
+<b>Theme:</b> Art<br/>
+<b>Material:</b> Canvas, Acrylic<br/>
+<b>Included:</b> Sketchbooks, Acrylic Pads, Color Pencils, Brush, Knife, etc.<br/>
+<b>Paint Type:</b> Acrylic<br/>
+<b>Style:</b> Box<br/>
+<b>ASIN:</b> B0D4YDKRJ9<br/>
+<b>Reviews:</b> 4.6 out of 5 stars<br/>
+<b>Rank:</b> #320 in Crafts &amp; Sewing<br/>
+<b>Weight:</b> 10.83 lbs<br/>
+<b>Origin:</b> China<br/>
+<b>Date First Available:</b> August 12, 2024</p>
+</div>
+</div>
+<div class="tabs">
+<button class="tab" data-tab="checkout">Checkout</button>
+<button class="tab" data-tab="shipping">Shipping</button>
+<button class="tab" data-tab="payment">Payment</button>
+<button class="tab" data-tab="wheel">Spin to Win</button>
+</div>
+<div class="tab-content" id="checkout">
+<div class="container">
+<div class="card">
+<h2>Checkout</h2>
+<button class="btn" id="next-shipping">NEXT: SHIPPING</button>
+<div style="display:flex;gap:10px;flex-wrap:wrap;"><input placeholder="Email address" style="flex:1;" type="email"/><input placeholder="First Name" style="flex:1;" type="text"/><input placeholder="Last Name" style="flex:1;" type="text"/><input placeholder="Phone" style="flex:1;" type="tel"/></div><div style="display:flex;gap:10px;flex-wrap:wrap;"><input placeholder="Address" style="flex:1;" type="text"/><input placeholder="Apt, Suite" style="flex:1;" type="text"/></div><div style="display:flex;gap:10px;flex-wrap:wrap;"><input placeholder="City" style="flex:1;" type="text"/><input placeholder="State" style="flex:1;" type="text"/><input placeholder="ZIP Code" style="flex:1;" type="text"/><input placeholder="United States" style="flex:1;" type="text"/></div><div style="display:flex;gap:10px;flex-wrap:wrap;"><input placeholder="Enter your Zip for estimated date delivery" style="flex:1;" type="text"/><select style="flex:1;">
+<option value="">Select Option</option>
+<option value="standard">Standard Shipping</option>
+<option value="express">Express Shipping</option>
+</select></div></div>
+</div>
+</div>
+<div class="tab-content" id="shipping">
+<div class="container">
+<div class="card">
+<h2>Shipping Options</h2>
+<button class="shipping-option">$8.00 - Same Day Shipping (Today, Mon)</button>
+<button class="shipping-option">$5.00 - One Day Shipping (Tomorrow, Tue)</button>
+<button class="shipping-option">Free - Two Day Shipping (April 24, Fri)</button>
+<button class="shipping-option">One Day Shipping - Get it by Wed</button>
+<div class="summary">
+<h3>ORDER SUMMARY</h3>
+<p>Subtotal: $39.99</p>
+<p>Shipping: <span id="shipping-cost">$0.00</span></p>
+<p>Tax: $1.20</p>
+<b>Total: <span id="total-cost">$41.19</span></b>
+</div>
+<button class="btn" id="next-payment">NEXT: PAYMENT</button>
+</div>
+</div>
+</div>
+<div class="tab-content" id="payment">
+<div class="container">
+<div class="card">
+<h2>Payment Information</h2>
+<input placeholder="First name" type="text" value="John"/>
+<input placeholder="Last name" type="text" value="Doe"/>
+<input placeholder="Card number" type="text"/>
+<input placeholder="CVV" type="text"/>
+<div style="display: flex; gap: 0.5rem;">
+<select style="width: 50%;"><option>Month</option></select>
+<select style="width: 50%;"><option>Year</option></select>
+</div>
+<button class="btn" id="submit-payment">COMPLETE PURCHASE</button>
+<button class="btn" id="next-wheel" style="background: #d9aa66;">SPIN TO WIN</button>
+<button class="btn" id="place-order" style="background:#6A5D4D;margin-top:20px;">PLACE ORDER</button></div>
+</div>
+</div>
+<div class="tab-content" id="wheel">
+<div class="container">
+<div class="card">
+<h2>Spin to Win Extra Discounts</h2>
+<div class="wheel" id="prize-wheel">SPIN</div>
+<button class="spin-btn" id="spin-button">SPIN WHEEL</button>
+<p id="prize-result" style="text-align: center; font-weight: bold;"></p>
+<button class="btn" id="apply-discount" style="display: none;">APPLY DISCOUNT</button>
+</div>
+</div>
+</div>
+<script>
+    // Tab functionality
+    const tabs = document.querySelectorAll('.tab');
+    const tabContents = document.querySelectorAll('.tab-content');
+    
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const target = tab.getAttribute('data-tab');
+        
+        // Reset all tabs and content
+        tabs.forEach(t => t.classList.remove('active'));
+        tabContents.forEach(c => c.classList.remove('active'));
+        
+        // Activate selected tab and content
+        tab.classList.add('active');
+        document.getElementById(target).classList.add('active');
+      });
+    });
+
+    // Next buttons functionality
+    document.getElementById('next-shipping').addEventListener('click', () => {
+      document.querySelector('[data-tab="shipping"]').click();
+    });
+
+    document.getElementById('next-payment').addEventListener('click', () => {
+      document.querySelector('[data-tab="payment"]').click();
+    });
+
+    document.getElementById('next-wheel').addEventListener('click', () => {
+      document.querySelector('[data-tab="wheel"]').click();
+    });
+
+    // Buy Now button
+    document.getElementById('buy-now-btn').addEventListener('click', () => {
+      document.querySelector('[data-tab="checkout"]').click();
+    });
+
+    // Add to Cart button
+    document.getElementById('add-cart-btn').addEventListener('click', () => {
+      alert('Item added to cart!');
+    });
+
+    // Shipping selection
+    const shippingOptions = document.querySelectorAll('.shipping-option');
+    const shippingCost = document.getElementById('shipping-cost');
+    const totalCost = document.getElementById('total-cost');
+    
+    shippingOptions.forEach(option => {
+      option.addEventListener('click', () => {
+        // Reset all options
+        shippingOptions.forEach(opt => opt.style.background = '#ddd');
+        
+        // Highlight selected option
+        option.style.background = '#b3b392';
+        
+        // Update cost display
+        let cost = 0;
+        if (option.textContent.includes('$8.00')) {
+          cost = 8;
+        } else if (option.textContent.includes('$5.00')) {
+          cost = 5;
+        }
+        
+        shippingCost.textContent = '$' + cost.toFixed(2);
+        totalCost.textContent = '$' + (39.99 + cost + 1.20).toFixed(2);
+      });
+    });
+
+    // Wheel functionality
+    const wheel = document.getElementById('prize-wheel');
+    const spinButton = document.getElementById('spin-button');
+    const prizeResult = document.getElementById('prize-result');
+    const applyDiscount = document.getElementById('apply-discount');
+    let currentRotation = 0;
+    
+    spinButton.addEventListener('click', () => {
+      // Disable button while spinning
+      spinButton.disabled = true;
+      
+      // Random rotation (3-10 full spins + random position)
+      const spins = 3 + Math.random() * 7;
+      const degrees = spins * 360 + Math.random() * 360;
+      currentRotation += degrees;
+      
+      wheel.style.transform = `rotate(${currentRotation}deg)`;
+      
+      // Determine prize
+      setTimeout(() => {
+        const prizes = ["$10 OFF", "$5 OFF", "$20 OFF", "FREE SHIPPING"];
+        const result = prizes[Math.floor(Math.random() * prizes.length)];
+        
+        wheel.textContent = result;
+        prizeResult.textContent = `Congratulations! You won ${result}!`;
+        spinButton.disabled = false;
+        applyDiscount.style.display = 'block';
+      }, 3000);
+    });
+    
+    applyDiscount.addEventListener('click', () => {
+      alert('Discount applied successfully!');
+      document.querySelector('[data-tab="payment"]').click();
+    });
+
+    // Complete purchase
+    document.getElementById('submit-payment').addEventListener('click', () => {
+      alert('Thank you for your purchase! Your order has been placed successfully.');
+    });
+
+    console.log("Product page loaded");
+  </script>
+</body>
+</html>

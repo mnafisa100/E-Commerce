@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>All Products - Redstore</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+        <!--added a cdn link by searching font awesome4 cdn and getting this link from https://www.bootstrapcdn.com/fontawesome/ this url*/-->
+        <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">-->
+
+    </head>
+    <body>
+        <!--<div class ="header">-->
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <a href="index.html"><img src="images/logo.png" width="125px"></a>
+                </div>
+                 <nav>
+                    <ul id="MenuItems">
+                        <li><a href="index.html">Home</a></li>
+                         <li><a href="products.html">Products</a></li>
+                         <li><a href="">About</a></li>
+                         <li><a href="">Contact</a></li>
+                         <li><a href="account.html">Account</a></li>
+
+                    </ul>
+                </nav>
+                <a href="cart.html"><img src="images/cart.png" width="30px" height="30px"></a>
+                <img src="images/menu.png" class="menu-icon" onClick="menutoggle()" >
+            </div>
+           
+        </div>
+    <!--</div>-->
+    
+        
+        <!------------------------------ account-page details------------------------------>
+
+        <div class="account-page">
+            <div class="container">
+                <div class="row" >
+                    <div class="col-2">
+                        <img src="images/image1.png" width="100%">
+                    </div>
+                    <div class="col-2">
+                        <div class="form-container">
+                            <div class="form-btn">
+                                <span onclick="login()">Login</span>
+                                <span onclick="register()">Register</span>
+                                <hr id="Indicator">
+                            </div>
+                            <form id="LoginForm">
+                                <input type="email" id="loginEmail" placeholder="Email" required>
+                                <input type="password" id="loginPassword" placeholder="Password" required>
+                                <button type="submit" class="btn">Login</button>
+                                <a href="#">Forgot password</a>
+                            </form>
+                            
+                            <form id="RegForm">
+                                <input type="text" placeholder="Username" disabled>
+                                <input type="email" id="registerEmail" placeholder="Email" required>
+                                <input type="password" id="registerPassword" placeholder="Password" required>
+                                <button type="submit" class="btn">Register</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                    
+            </div>
+        </div>
+        
+       
+        <!----------------------------------footer------------------------------------->
+        <div class ="footer">
+        <div class="container">
+            
+            <div class="row">
+                <div class="footer-col-1">
+                    <h3>Download Our App</h3>
+                    <p>Download App for Android and ios mobile phone.</p>
+                    <div class="app-logo">
+                        <img src="images/play-store.png" alt="">
+                        <img src="images/app-store.png" alt="">
+                    </div>
+                </div>
+                <div class="footer-col-2">
+                    <img src="images/logo-white.png">
+                    <p>Our Purpose Is To Sustainably Make the Pleasure and Benefits of Sports Accessible to the Many.</p>
+                </div>
+                <div class="footer-col-3">
+                    <h3>Useful Links</h3>
+                   <ul>
+                       <li>Coupons</li>
+                       <li>Blog Post</li>
+                       <li>Return Policy</li>
+                       <li>Join Affiliate</li>
+                    </ul>
+                </div>
+                <div class="footer-col-4">
+                    <h3>Follow us</h3>
+                   <ul>
+                       <li>Facebook</li>
+                       <li>Twitter</li>
+                       <li>Instagram</li>
+                       <li>Youtube</li>
+                    </ul>
+                </div>
+                
+            </div>
+            
+            <hr><!--horizontal line-->
+            <p class="copyright">Copyright 2021</p>
+            
+        </div>
+    </div>
+    <!-- Import Firebase SDK with modular functionality -->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+        
+        // Your Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyDmMEY4yYPFWkW05ouEHxfos5uC4R5Rcfc",
+          authDomain: "e-commerce-52288.firebaseapp.com",
+          projectId: "e-commerce-52288",
+          storageBucket: "e-commerce-52288.firebasestorage.app", 
+          messagingSenderId: "780953590010",
+          appId: "1:780953590010:web:86e9fa6cfe4d97c03b1143",
+          measurementId: "G-K2EN261W44"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        
+        // DOM elements
+        const loginForm = document.getElementById("LoginForm");
+        const regForm = document.getElementById("RegForm");
+        
+        // Register functionality
+        regForm.addEventListener("submit", function(e) {
+          e.preventDefault();
+          
+          const email = document.getElementById("registerEmail").value;
+          const password = document.getElementById("registerPassword").value;
+          
+          createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+              // Signed up successfully
+              const user = userCredential.user;
+              alert("Registration successful!");
+              console.log("User registered:", user);
+              // Optional: Switch to login form
+              login();
+            })
+            .catch((error) => {
+              const errorCode = error.code;
+              const errorMessage = error.message;
+              alert("Registration failed: " + errorMessage);
+              console.error(errorCode, errorMessage);
+            });
+        });
+        
+        // Login functionality
+        loginForm.addEventListener("submit", function(e) {
+          e.preventDefault();
+          
+          const email = document.getElementById("loginEmail").value;
+          const password = document.getElementById("loginPassword").value;
+          
+          signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+              // Signed in successfully
+              const user = userCredential.user;
+              alert("Login successful!");
+              console.log("User logged in:", user);
+              window.location.href = "index.html"; // Redirect after login
+            })
+            .catch((error) => {
+              const errorCode = error.code;
+              const errorMessage = error.message;
+              alert("Login failed: " + errorMessage);
+              console.error(errorCode, errorMessage);
+            });
+        });
+      </script>
+    
+    <script src="app.js"></script>
+
+    </body>
+</html>

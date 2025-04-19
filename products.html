@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>All Products - Redstore</title>
+<link href="style.css" rel="stylesheet"/>
+<link href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!--added a cdn link by searching font awesome4 cdn and getting this link from https://www.bootstrapcdn.com/fontawesome/ this url*/-->
+<!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">-->
+</head>
+<body>
+    <!-- Skip link for keyboard navigation -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <div class="container">
+        <div class="navbar">
+            <div class="logo">
+                <a href="index.html"><img src="images/logo.png" width="125px"></a>
+            </div>
+            <nav>
+                <ul id="MenuItems">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="">About</a></li>
+                    <li><a href="">Contact</a></li>
+                    <li><a href="account.html">Account</a></li>
+                </ul>
+            </nav>
+            <a href="cart.html"><img src="images/cart.png" width="30px" height="30px"></a>
+            <img src="images/menu.png" class="menu-icon" onClick="menutoggle()">
+        </div>
+    </div>
+
+    <main id="main-content">
+        <section class="container">
+            <h1 class="title">All Products</h1>
+            
+            <!-- Filter section -->
+            <div class="filter-section">
+                <form class="filter-form" id="product-filter">
+                    <div class="filter-group">
+                        <label for="category">Category</label>
+                        <select id="category" name="category">
+                            <option value="">All Categories</option>
+                            <option value="clothing">Clothing</option>
+                            <option value="shoes">Shoes</option>
+                            <option value="accessories">Accessories</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="price-range">Price Range</label>
+                        <select id="price-range" name="price-range">
+                            <option value="">All Prices</option>
+                            <option value="0-25">$0 - $25</option>
+                            <option value="25-50">$25 - $50</option>
+                            <option value="50-100">$50 - $100</option>
+                            <option value="100+">$100+</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="sort-by">Sort By</label>
+                        <select id="sort-by" name="sort-by">
+                            <option value="featured">Featured</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="newest">Newest First</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Products header with count -->
+            <div class="products-header">
+                <p class="product-count" id="product-count">Showing 12 products</p>
+            </div>
+            
+            <!-- Loading indicator -->
+            <div class="loading-indicator" id="loading-indicator">
+                <div class="spinner" role="status">
+                    <span class="sr-only">Loading products...</span>
+                </div>
+            </div>
+            
+            <!-- Products grid -->
+            <div class="products-grid" id="products" aria-live="polite">
+                <!-- Product cards will be dynamically generated here -->
+                <!-- Sample Product Card -->
+                <article class="product-card">
+                    <a class="product-link" href="products-details.html" aria-label="Red Printed T-Shirt">
+                        <div class="product-image-container">
+                            <img alt="Red Printed T-Shirt" class="product-image" src="images/product-1.jpg"/>
+                        </div>
+                        <div class="product-details">
+                            <h2 class="product-title">Red Printed T-Shirt</h2>
+                            <div class="rating" aria-label="4 out of 5 stars">★★★★☆</div>
+                            <p class="product-price">$39.99</p>
+                            <button class="add-to-cart-btn" aria-label="Add Red Printed T-Shirt to cart">Add to Cart</button>
+                        </div>
+                    </a>
+                </article>
+                
+                <!-- Additional product cards (for demonstration) -->
+                <article class="product-card">
+                    <a class="product-link" href="products-details.html" aria-label="Sports Shoes">
+                        <div class="product-image-container">
+                            <img alt="Sports Shoes" class="product-image" src="images/product-2.jpg"/>
+                        </div>
+                        <div class="product-details">
+                            <h2 class="product-title">Sports Shoes</h2>
+                            <div class="rating" aria-label="4.5 out of 5 stars">★★★★½</div>
+                            <p class="product-price">$75.00</p>
+                            <button class="add-to-cart-btn" aria-label="Add Sports Shoes to cart">Add to Cart</button>
+                        </div>
+                    </a>
+                </article>
+                
+                <article class="product-card">
+                    <a class="product-link" href="products-details.html" aria-label="Gray Trackpants">
+                        <div class="product-image-container">
+                            <img alt="Gray Trackpants" class="product-image" src="images/product-3.jpg"/>
+                        </div>
+                        <div class="product-details">
+                            <h2 class="product-title">Gray Trackpants</h2>
+                            <div class="rating" aria-label="4 out of 5 stars">★★★★☆</div>
+                            <p class="product-price">$45.50</p>
+                            <button class="add-to-cart-btn" aria-label="Add Gray Trackpants to cart">Add to Cart</button>
+                        </div>
+                    </a>
+                </article>
+                
+                <article class="product-card">
+                    <a class="product-link" href="products-details.html" aria-label="Blue Printed T-Shirt">
+                        <div class="product-image-container">
+                            <img alt="Blue Printed T-Shirt" class="product-image" src="images/product-4.jpg"/>
+                        </div>
+                        <div class="product-details">
+                            <h2 class="product-title">Blue Printed T-Shirt</h2>
+                            <div class="rating" aria-label="3.5 out of 5 stars">★★★½☆</div>
+                            <p class="product-price">$35.00</p>
+                            <button class="add-to-cart-btn" aria-label="Add Blue Printed T-Shirt to cart">Add to Cart</button>
+                        </div>
+                    </a>
+                </article>
+            </div>
+            
+            <!-- Message for no products found -->
+            <div class="no-products" id="no-products" style="display: none;">
+                <h2>No products found</h2>
+                <p>Try adjusting your filters or search criteria.</p>
+            </div>
+            
+            <!-- Pagination -->
+            <nav aria-label="Product pagination" class="pagination">
+                <a href="#" class="pagination-item active" aria-current="page">1</a>
+                <a href="#" class="pagination-item">2</a>
+                <a href="#" class="pagination-item">3</a>
+                <a href="#" class="pagination-item">4</a>
+                <a href="#" class="pagination-item" aria-label="Next page">→</a>
+            </nav>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col-1">
+                    <h3>Download Our App</h3>
+                    <p>Download App for Android and iOS mobile phone.</p>
+                    <div class="app-logo">
+                        <img alt="Play Store" src="images/play-store.png"/>
+                        <img alt="App Store" src="images/app-store.png"/>
+                    </div>
+                </div>
+                <div class="footer-col-2">
+                    <img src="images/logo-white.png" alt="Redstore Logo"/>
+                    <p>Our Purpose Is To Sustainably Make the Pleasure and Benefits of Sports Accessible to the Many.</p>
+                </div>
+                <div class="footer-col-3">
+                    <h3>Useful Links</h3>
+                    <ul>
+                        <li><a href="#">Coupons</a></li>
+                        <li><a href="#">Blog Post</a></li>
+                        <li><a href="#">Return Policy</a></li>
+                        <li><a href="#">Join Affiliate</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col-4">
+                    <h3>Follow us</h3>
+                    <ul>
+                        <li><a href="#" aria-label="Facebook">Facebook</a></li>
+                        <li><a href="#" aria-label="Twitter">Twitter</a></li>
+                        <li><a href="#" aria-label="Instagram">Instagram</a></li>
+                        <li><a href="#" aria-label="Youtube">Youtube</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr/> <!-- horizontal line -->
+            <p class="copyright">Copyright 2021 - Redstore</p>
+        </div>
+    </footer>
+    <script src="app.js"></script>
+    </body>
+</html>
